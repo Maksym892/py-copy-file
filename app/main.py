@@ -1,12 +1,15 @@
 def copy_file(command: str) -> None:
     split_command = command.split(" ")
-    source, destination = split_command[1], split_command[2]
+    if len(split_command) != 3:
+        return
     if split_command[0] != "cp":
         return
-    if len(split_command) < 3:
-        return
+
+    source, destination = split_command[1], split_command[2]
+
     if source == destination:
         return
+
     try:
         with open(
             source, "r"
